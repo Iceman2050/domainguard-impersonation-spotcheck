@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <img src="icons/icon48.png" alt="" width="28" height="28">
+    <div>
+      <h1>DomainGuard</h1>
+      <p class="sub">Impersonation Spot-Check</p>
+    </div>
+  </header>
+
+  <section id="verdict-card" class="card">
+    <div id="verdict-badge" class="badge">…</div>
+    <p id="domain-line" class="domain"></p>
+    <p id="verdict-summary" class="summary"></p>
+    <ul id="signal-list"></ul>
+    <p id="allowlisted-note" class="note hidden"></p>
+  </section>
+
+  <section class="card">
+    <button id="btn-banner" class="primary hidden">Show warning on this page</button>
+    <button id="btn-allow" class="ghost">Don't warn me for this domain again</button>
+    <button id="btn-unallow" class="ghost hidden">Remove from my trusted list</button>
+  </section>
+
+  <section class="card">
+    <label class="toggle-row">
+      <input type="checkbox" id="deep-check">
+      <span><strong>Deep Check</strong> (optional)</span>
+    </label>
+    <p class="fineprint" id="deep-check-note">Off. When on — only with your consent — the extension sends <em>only the domain name</em> (never the full URL or page content) to DomainGuard for a deeper lookup. <span class="warn-inline">Requires a manifest host permission; see DEEP-CHECK.md. Currently inert.</span></p>
+  </section>
+
+  <section class="card">
+    <h2>My trusted domains</h2>
+    <ul id="allowlist"></ul>
+    <p id="allowlist-empty" class="fineprint">None yet.</p>
+  </section>
+
+  <footer>
+    <a href="https://domain-guard-08k7.onrender.com" target="_blank" rel="noopener">DomainGuard platform</a>
+    <span>·</span>
+    <a href="https://ingeniousai-security-checks.netlify.app/domain-check.html" target="_blank" rel="noopener">Free domain check</a>
+    <span>·</span>
+    <a href="#" id="link-why">Why am I seeing this?</a>
+  </footer>
+
+  <div id="why-modal" class="modal hidden">
+    <div class="modal-body">
+      <h2>Why am I seeing this?</h2>
+      <p>Phishing sites impersonate brands you trust by registering lookalike domains: one letter off, lookalike foreign characters, extra words like "secure-login", or the brand name hidden in a subdomain of a domain they own.</p>
+      <p>This extension checks the current site's domain against those patterns <strong>entirely on your device</strong>. Nothing about your browsing is sent anywhere.</p>
+      <p>It catches common impersonation shapes — not targeted attacks on clean domains, and it can't confirm who really owns a domain. When in doubt, type the address yourself instead of clicking links.</p>
+      <button id="btn-why-close" class="primary">Got it</button>
+    </div>
+  </div>
+</div>
+<script src="heuristics.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>
