@@ -11,16 +11,12 @@ anywhere.
 
 ## What is stored
 - Your **allowlist**: domains you marked "don't warn me again".
-- Your **Deep Check preference** (off by default).
-Both live in `chrome.storage.local` — on your device only. Uninstalling the
-extension deletes them.
+It lives in `chrome.storage.local` — on your device only. Uninstalling the
+extension deletes it.
 
 ## What leaves your device
-**Nothing** — unless you explicitly turn on Deep Check (off by default, with a
-separate consent confirmation). Deep Check would send **only the domain name**
-(e.g. `example.com`) to DomainGuard for a deeper lookup — never the full URL,
-never page content. In v1.0.0 the Deep Check path is inert (it requires a
-manifest host permission that is deliberately not included; see DEEP-CHECK.md).
+**Nothing.** The extension makes zero network calls — there is no server
+component in v1.0.0.
 
 ## What we never do
 - No analytics, no tracking pixels, no telemetry of any kind.

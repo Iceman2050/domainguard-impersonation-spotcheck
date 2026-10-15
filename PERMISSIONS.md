@@ -12,8 +12,8 @@ see any other tab, your history, or background tabs.
 **Without it:** the extension could not know which site to check.
 
 ## `storage`
-**Why:** Stores your allowlist ("don't warn me for this domain again") and your
-Deep Check preference locally on your device via `chrome.storage.local`.
+**Why:** Stores your allowlist ("don't warn me for this domain again")
+locally on your device via `chrome.storage.local`.
 **Without it:** your trusted-domain choices would reset every browser restart.
 
 ## `scripting`

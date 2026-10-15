@@ -9,7 +9,7 @@ spoofing. All checks run **on your device**; nothing is sent anywhere.
 - `manifest.json` — MV3, permissions: `activeTab`, `storage`, `scripting` only.
 - `heuristics.js` — pure local detection engine (shared, node-testable).
 - `brands.json` — curated commonly-impersonated brand list (local only).
-- `popup.html` / `popup.css` / `popup.js` — spot-check UI, allowlist, Deep Check toggle (inert stub).
+- `popup.html` / `popup.css` / `popup.js` — spot-check UI and allowlist.
 - `banner.js` — dismissible on-page warning banner (bundled, injected via `chrome.scripting`).
 - `icons/` — shield icons (PNG for the manifest + SVG sources).
 - `PERMISSIONS.md` / `PRIVACY.md` / `DEEP-CHECK.md` — review-facing docs.
@@ -25,9 +25,9 @@ spoofing. All checks run **on your device**; nothing is sent anywhere.
   load; that requires `<all_urls>` host permission. v1 ships `activeTab` only —
   you click, it checks. This is the privacy differentiator and the reason the
   Web Store "permissions justification" should pass cleanly.
-- **Deep Check is an honest stub:** toggle + consent UI exist, but no network
-  call is possible without a host permission that is deliberately excluded.
-  See DEEP-CHECK.md for the v1.1 wiring plan.
+- **No cloud lookup in v1:** an optional server-side "Deep Check" was cut from
+  the UI rather than shipped as an inert toggle (no-mock-features rule).
+  DEEP-CHECK.md keeps the v1.1 wiring plan if a host permission is ever added.
 
 ## Safety invariants (do not regress)
 - No `eval`, no `new Function`, no remote code, no analytics, no tracking.

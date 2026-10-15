@@ -36,8 +36,8 @@ function hostnameOf(tab) {
 }
 
 async function loadStore() {
-  const d = await chrome.storage.local.get({ allowlist: [], deepCheck: false });
-  return { allowlist: d.allowlist || [], deepCheck: !!d.deepCheck };
+  const d = await chrome.storage.local.get({ allowlist: [] });
+  return { allowlist: d.allowlist || [] };
 }
 
 async function render() {
@@ -124,35 +124,6 @@ async function render() {
   };
 
   renderAllowlist(store.allowlist);
-
-/* DEEP-CHECK STUB — v1.0.0: intentionally unwired.
- * When the v1.1 server endpoint + manifest host_permissions exist (see
- * DEEP-CHECK.md), implement:
- *   async function deepCheckDomain(domain) {
- *     const res = await fetch('https://domain-guard-08k7.onrender.com/api/lookalike-check', {
- *       method: 'POST', headers: { 'Content-Type': 'application/json' },
- *       body: JSON.stringify({ domain })   // domain ONLY — never URL/content
- *     });
- *     return res.json();
- *   }
- * Until then the toggle below stays inert by design. */
-  const deepToggle = document.getElementById('deep-check');
-  deepToggle.checked = store.deepCheck;
-  deepToggle.onchange = async () => {
-    if (deepToggle.checked) {
-      const ok = confirm(
-        'Deep Check sends ONLY the domain name (e.g. "example.com") to DomainGuard — ' +
-        'never the full URL, never page content. Turn it on?'
-      );
-      if (!ok) { deepToggle.checked = false; return; }
-      // See DEEP-CHECK.md: without a host_permissions entry this call cannot
-      // run, so we keep it disabled and explain why.
-      alert('Deep Check is not wired yet: enabling it requires adding a host permission to the manifest (see DEEP-CHECK.md). It stays off.');
-      deepToggle.checked = false;
-      return;
-    }
-    await chrome.storage.local.set({ deepCheck: false });
-  };
 }
 
 function renderAllowlist(list) {
