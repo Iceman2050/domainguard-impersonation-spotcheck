@@ -1,3 +1,5 @@
+[![AI Security Score](https://ingeniousai-security-checks.netlify.app/badges/domainguard-impersonation-spotcheck.svg)](https://ingeniousai-security-checks.netlify.app/ai-security-badge.html)
+
 # DomainGuard — Impersonation Spot-Check (Chrome extension, MV3)
 
 Free browser extension from Ingenious AI. Click the icon on any site to
