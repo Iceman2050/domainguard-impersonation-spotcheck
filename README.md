@@ -24,6 +24,17 @@ google.com -> LOW
 
 User-initiated by design: `activeTab` permission only, no `<all_urls>`. See PERMISSIONS.md / PRIVACY.md / DEEP-CHECK.md for the review docs.
 
+## Tests
+
+The heuristics engine (`heuristics.js`) is pure functions — no DOM, no `chrome.*`, no network — so it runs under plain node:
+
+```bash
+node tests/test_heuristics.js
+# 26/26 tests passed (exits 1 on the first failure)
+```
+
+Covers: confusable domains flagged (Cyrillic-а `paypal`, single-script lookalikes), suspicious TLDs flagged, typosquats and leet-substitutions (`paypaI.com`, `g00gle.com`), punycode, subdomain spoofing, keyword-stuffed brand slugs; and clean domains (`paypal.com`, `google.com`, hyphenated recipe blogs) NOT flagged. Registrable-domain extraction for two-part suffixes (`co.uk`, `com.au`) and levenshtein sanity included.
+
 ## What it does NOT do
 Heuristic detection against a curated brand list — novel brands and targeted spear-phish domains may not match. It's a spot-check aid, not a phishing verdict.
 
